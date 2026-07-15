@@ -1,396 +1,726 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>روستای چای‌باغ | طبیعت، تاریخ و اقامتگاه</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>روستای چای‌باغ | نگین سبز سوادکوه شمالی</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --green-900: #1a2f1a;
+            --green-800: #234d23;
+            --green-700: #2d6a2d;
+            --green-600: #3a8a3a;
+            --green-500: #4a9e4a;
+            --green-400: #6db86d;
+            --green-300: #90cc90;
+            --green-200: #b5dfb5;
+            --green-100: #d9f0d9;
+            --green-50: #edf7ed;
+            --cream: #faf7f2;
+            --cream-dark: #f0ebe0;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.12);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    body {
-      font-family: 'Segoe UI', 'Roboto', Tahoma, sans-serif;
-      background-color: #f6f8f4;
-      color: #1e2e1c;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    :root {
-      --green-dark: #1f3b1a;
-      --green-mid: #3a5a2f;
-      --green-soft: #7b9f6a;
-      --cream: #faf9f5;
-      --white: #ffffff;
-      --gray-light: #e7ece2;
-      --shadow: 0 8px 20px rgba(0,0,0,0.05);
-      --radius: 18px;
-    }
+        body {
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #f5f7f3 0%, #faf9f5 50%, #f7faf5 100%);
+            color: var(--gray-800);
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-    .tea-leaf {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      width: 50px;
-      height: 50px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path fill="%233a5a2f" opacity="0.2" d="M20 4c-2 5-8 10-14 11 4 2 10 5 12 11 2-6 9-10 14-11-7-1-12-6-12-11z"/></svg>') no-repeat;
-      pointer-events: none;
-      z-index: 9999;
-      animation: leafFloat 14s infinite;
-    }
-    @keyframes leafFloat {
-      0%{transform: translate(0,0) rotate(0deg);}
-      50%{transform: translate(20px,30px) rotate(10deg);}
-      100%{transform: translate(0,0) rotate(0deg);}
-    }
+        /* Tea Leaf Effect */
+        .tea-leaf-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
 
-    /* هدر */
-    .sticky-header {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
-      z-index: 1000;
-      height: 72px;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-    }
-    .sticky-header.scrolled {
-      height: 60px;
-      background: rgba(255,255,255,0.98);
-    }
-    .header-container {
-      max-width: 1300px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 0 28px;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 1.9rem;
-      color: var(--green-dark);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .nav-item {
-      position: relative;
-    }
-    .nav-link {
-      background: transparent;
-      border: none;
-      font-size: 1rem;
-      font-weight: 500;
-      padding: 0.6rem 1.1rem;
-      border-radius: 40px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #1e2e1c;
-      transition: 0.2s;
-    }
-    .nav-link:hover {
-      background: #ecf1e7;
-    }
-    .mega-panel {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 24px 40px rgba(0,0,0,0.1);
-      padding: 28px;
-      display: none;
-      grid-template-columns: 2fr 1.5fr 1.8fr;
-      gap: 24px;
-      min-width: 700px;
-      z-index: 1020;
-      margin-top: 8px;
-    }
-    .mega-panel.active {
-      display: grid;
-    }
-    .mega-links a {
-      display: block;
-      padding: 8px 12px;
-      color: #2b3d24;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .mega-card img {
-      width: 100%;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
+        .tea-leaf {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, rgba(74, 158, 74, 0.15), rgba(45, 106, 45, 0.1));
+            clip-path: polygon(50% 0%, 100% 50%, 80% 100%, 20% 100%, 0% 50%);
+            animation: teaLeafFloat 15s infinite ease-in-out;
+        }
 
-    .mobile-menu-icon {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
+        .tea-leaf:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .tea-leaf:nth-child(2) { top: 30%; left: 15%; animation-delay: -3s; width: 25px; height: 25px; }
+        .tea-leaf:nth-child(3) { top: 50%; left: 8%; animation-delay: -6s; width: 20px; height: 20px; }
+        .tea-leaf:nth-child(4) { top: 70%; left: 12%; animation-delay: -9s; }
+        .tea-leaf:nth-child(5) { top: 20%; right: 10%; animation-delay: -12s; width: 22px; height: 22px; }
+        .tea-leaf:nth-child(6) { top: 60%; right: 8%; animation-delay: -2s; width: 28px; height: 28px; }
+        .tea-leaf:nth-child(7) { top: 80%; right: 15%; animation-delay: -7s; }
+        .tea-leaf:nth-child(8) { top: 40%; right: 20%; animation-delay: -10s; width: 18px; height: 18px; }
 
-    /* صفحات */
-    .page {
-      display: none;
-      max-width: 1300px;
-      margin: 20px auto 40px;
-      padding: 0 24px;
-      animation: fade 0.3s;
-    }
-    .page.active-page {
-      display: block;
-    }
-    @keyframes fade { from{opacity:0.8;} to{opacity:1;} }
+        @keyframes teaLeafFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.3; }
+            25% { transform: translateY(-20px) rotate(5deg) scale(1.1); opacity: 0.5; }
+            50% { transform: translateY(-10px) rotate(-3deg) scale(0.9); opacity: 0.4; }
+            75% { transform: translateY(-30px) rotate(8deg) scale(1.05); opacity: 0.45; }
+        }
 
-    .hero {
-      background: linear-gradient(100deg, #e3ecdb, #fafdf8);
-      border-radius: 30px;
-      padding: 32px 36px;
-      margin: 24px 0;
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      margin: 24px 0;
-    }
-    .info-card {
-      background: white;
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-    .btn {
-      background: var(--green-mid);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 50px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .lightbox {
-      position: fixed;
-      top:0;left:0;width:100%;height:100%;
-      background: rgba(0,0,0,0.92);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:2000;
-    }
-    .lightbox img {
-      max-height: 85vh;
-      max-width: 90vw;
-      border-radius: 12px;
-    }
-    footer {
-      background: #eef2ea;
-      padding: 36px 24px;
-      margin-top: 50px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
+        /* Sticky Header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            height: 80px;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(74, 158, 74, 0.1);
+        }
 
-    @media (max-width: 850px) {
-      .desktop-nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 72px;
-        right: 0;
-        background: white;
-        width: 100%;
-        box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-        padding: 20px;
-      }
-      .desktop-nav.show {
-        display: flex;
-      }
-      .mobile-menu-icon {
-        display: block;
-      }
-      .mega-panel {
-        position: static;
-        grid-template-columns: 1fr;
-        min-width: auto;
-        box-shadow: none;
-        margin: 0;
-      }
-    }
-  </style>
-</head>
-<body>
-<div class="tea-leaf"></div>
-<header class="sticky-header" id="header">
-  <div class="header-container">
-    <div class="logo"><i class="fas fa-leaf"></i> چای‌باغ</div>
-    <i class="fas fa-bars mobile-menu-icon" id="menuToggle"></i>
-    <nav class="desktop-nav" id="mainNav">
-      <div class="nav-item"><button class="nav-link" data-mega="mega1"><i class="fas fa-home"></i> خانه</button><div class="mega-panel" id="mega1"><div class="mega-links"><a href="#" class="page-link" data-page="home">صفحه اصلی</a><a href="#" class="page-link" data-page="about">معرفی</a></div><div class="mega-card"><span>🏡 چای‌باغ</span></div></div></div>
-      <div class="nav-item"><button class="nav-link" data-mega="mega2"><i class="fas fa-tree"></i> طبیعت</button><div class="mega-panel" id="mega2"><div class="mega-links"><a href="#" class="page-link" data-page="nature">طبیعت</a><a href="#" class="page-link" data-page="geography">جغرافیا</a></div></div></div>
-      <div class="nav-item"><button class="nav-link" data-mega="mega3"><i class="fas fa-landmark"></i> تاریخ</button><div class="mega-panel" id="mega3"><a href="#" class="page-link" data-page="history">تاریخچه</a></div></div>
-      <div class="nav-item"><button class="nav-link" data-mega="mega4"><i class="fas fa-images"></i> گالری</button><div class="mega-panel" id="mega4"><a href="#" class="page-link" data-page="gallery">گالری</a></div></div>
-      <div class="nav-item"><button class="nav-link" data-mega="mega5"><i class="fas fa-bed"></i> اقامت</button><div class="mega-panel" id="mega5"><a href="#" class="page-link" data-page="booking">رزرو</a></div></div>
-      <div class="nav-item"><button class="nav-link" data-mega="mega6"><i class="fas fa-phone"></i> تماس</button><div class="mega-panel" id="mega6"><a href="#" class="page-link" data-page="contact">تماس</a></div></div>
-    </nav>
-  </div>
-</header>
+        .sticky-header.scrolled {
+            height: 65px;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+        }
 
-<main id="app">
-  <div class="page active-page" id="page-home">
-    <div class="hero"><h1>🌿 روستای چای‌باغ</h1><p>مرکز دهستان چای‌باغ · سوادکوه شمالی · ۸۷۰ نفر</p></div>
-    <div class="card-grid">
-      <div class="info-card"><h3>📍 موقعیت</h3><p>۱۵ کیلومتری قائمشهر</p></div>
-      <div class="info-card"><h3>🏛️ پل شاپور</h3><p>اثر ملی، طاق جناغی</p></div>
-    </div>
-    <h2>🍃 محصولات محلی</h2><p>برنج ارگانیک، نان محلی، لبنیات</p>
-  </div>
-  <div class="page" id="page-about"><h2>معرفی روستا</h2><p>چای‌باغ روستایی جنگلی از توابع نارنجستان...</p></div>
-  <div class="page" id="page-history"><h2>تاریخچه پل شاپور</h2><p>احتمالاً صفویه یا قاجار، ۵۲ متر طول.</p></div>
-  <div class="page" id="page-geography"><h2>جغرافیا</h2><p>جلگه‌ای در میان جنگل‌های هیرکانی.</p></div>
-  <div class="page" id="page-culture"><h2>فرهنگ</h2><p>آداب و رسوم محلی.</p></div>
-  <div class="page" id="page-agriculture"><h2>کشاورزی</h2><p>برنج و محصولات ارگانیک.</p></div>
-  <div class="page" id="page-nature"><h2>طبیعت</h2><p>جنگل و مراتع، بهترین فصل بهار.</p></div>
-  <div class="page" id="page-gallery"><h2>گالری</h2><div class="card-grid" id="galleryGrid"></div><div class="lightbox" id="lightbox"><img id="lightboxImg"></div></div>
-  <div class="page" id="page-news"><h2>اخبار</h2><p>آخرین رویدادهای چای‌باغ.</p></div>
-  <div class="page" id="page-booking">
-    <h2>🏡 رزرو اقامتگاه</h2>
-    <div class="card-grid" id="accommodations"></div>
-    <div id="bookingForm" style="display:none; margin-top:24px; background:#f7faf4; padding:24px; border-radius:20px;">
-      <h3>فرم رزرو</h3>
-      <input type="text" id="guestName" placeholder="نام کامل" style="width:100%; padding:12px; margin:10px 0;"><br>
-      <input type="date" id="checkIn"> <input type="date" id="checkOut">
-      <input type="number" id="guests" placeholder="تعداد نفرات" value="2" min="1"><br>
-      <button class="btn" id="submitBooking">ثبت نهایی</button>
-    </div>
-  </div>
-  <div class="page" id="page-contact"><h2>تماس با ما</h2><p>📞 ۰۱۱-xxxx | چای‌باغ، سوادکوه شمالی</p></div>
-</main>
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 40px;
+            height: 100%;
+        }
 
-<footer>
-  <div><strong>چای‌باغ</strong><br>مازندران، سوادکوه شمالی</div>
-  <div>تماس: ۰۱۱-۳۲۲۲</div>
-  <div>© 2025 کلیه حقوق محفوظ</div>
-</footer>
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-<script>
-  (function() {
-    const pages = document.querySelectorAll('.page');
-    const pageLinks = document.querySelectorAll('.page-link');
-    const megaPanels = document.querySelectorAll('.mega-panel');
-    const navButtons = document.querySelectorAll('[data-mega]');
-    const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--green-600), var(--green-800));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            transition: var(--transition);
+        }
 
-    function showPage(pageId) {
-      pages.forEach(p => p.classList.remove('active-page'));
-      const target = document.getElementById(`page-${pageId}`);
-      if (target) target.classList.add('active-page');
-      closeAllMega();
-      if (window.innerWidth < 850) mainNav.classList.remove('show');
-    }
+        .sticky-header.scrolled .logo-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+        }
 
-    pageLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        showPage(link.dataset.page);
-      });
-    });
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--green-900);
+            letter-spacing: -1px;
+        }
 
-    function closeAllMega() {
-      megaPanels.forEach(p => p.classList.remove('active'));
-    }
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            display: block;
+        }
 
-    navButtons.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const megaId = btn.dataset.mega;
-        const panel = document.getElementById(megaId);
-        if (!panel) return;
-        const isActive = panel.classList.contains('active');
-        closeAllMega();
-        if (!isActive) panel.classList.add('active');
-      });
-    });
+        /* Main Navigation */
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.nav-item')) closeAllMega();
-    });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllMega(); });
+        .nav-item {
+            position: relative;
+            list-style: none;
+        }
 
-    window.addEventListener('scroll', () => {
-      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
-    });
+        .nav-link {
+            background: transparent;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            padding: 0.7rem 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-family: inherit;
+        }
 
-    menuToggle.addEventListener('click', () => {
-      mainNav.classList.toggle('show');
-    });
+        .nav-link i {
+            font-size: 0.9rem;
+            color: var(--green-600);
+            transition: var(--transition);
+        }
 
-    // گالری
-    const galleryImages = [
-      { src:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect fill="%233a5a2f" width="300" height="200"/%3E%3Ctext x="80" y="110" fill="white"%3Eپل شاپور%3C/text%3E%3C/svg%3E', alt:'پل'},
-      { src:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect fill="%237b9f6a" width="300" height="200"/%3E%3Ctext x="90" y="110" fill="white"%3Eجنگل%3C/text%3E%3C/svg%3E', alt:'جنگل'}
-    ];
-    const grid = document.getElementById('galleryGrid');
-    if (grid) grid.innerHTML = galleryImages.map((img,i) => `<div class="info-card"><img src="${img.src}" alt="${img.alt}" style="width:100%; border-radius:12px; cursor:pointer;" data-lightbox></div>`).join('');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    document.addEventListener('click', (e) => {
-      if (e.target.dataset.lightbox !== undefined) {
-        lightbox.style.display = 'flex';
-        lightboxImg.src = e.target.src;
-      }
-    });
-    lightbox?.addEventListener('click', () => lightbox.style.display = 'none');
+        .nav-link:hover {
+            background: var(--green-50);
+            color: var(--green-800);
+        }
 
-    // اقامتگاه
-    const stays = [
-      { name:'کلبه سوئیسی', capacity:4, price:650000, img:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="120"%3E%3Crect fill="%233a5a2f" width="200" height="120"/%3E%3Ctext fill="white" x="50" y="65"%3Eکلبه%3C/text%3E%3C/svg%3E'},
-      { name:'بوم‌گردی شاپور', capacity:6, price:850000, img:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="120"%3E%3Crect fill="%237b9f6a" width="200" height="120"/%3E%3Ctext fill="white" x="45" y="65"%3Eبوم‌گردی%3C/text%3E%3C/svg%3E'}
-    ];
-    const accDiv = document.getElementById('accommodations');
-    if (accDiv) {
-      accDiv.innerHTML = stays.map((s,i) => `
-        <div class="info-card">
-          <img src="${s.img}" style="width:100%; border-radius:14px;">
-          <h4>${s.name}</h4><p>👥 ${s.capacity} نفر | ${s.price.toLocaleString()} تومان</p>
-          <button class="btn select-stay" data-index="${i}">رزرو</button>
-        </div>`).join('');
-    }
-    const formDiv = document.getElementById('bookingForm');
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('select-stay')) {
-        formDiv.style.display = 'block';
-        window.selectedStay = stays[e.target.dataset.index];
-      }
-    });
-    document.getElementById('submitBooking')?.addEventListener('click', () => {
-      const name = document.getElementById('guestName').value;
-      if (!name || !window.selectedStay) return alert('لطفاً اطلاعات را تکمیل کنید.');
-      alert(`✅ ${window.selectedStay.name} برای ${name} رزرو شد.`);
-      formDiv.style.display = 'none';
-    });
+        .nav-link:hover i {
+            transform: rotate(10deg);
+        }
 
-    showPage('home');
-  })();
-</script>
-</body>
-</html>
+        .nav-link.active {
+            background: var(--green-100);
+            color: var(--green-900);
+        }
+
+        /* Mega Menu */
+        .mega-panel {
+            position: absolute;
+            top: 120%;
+            right: 50%;
+            transform: translateX(50%);
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-2xl);
+            padding: 35px;
+            display: none;
+            grid-template-columns: 2fr 1.5fr 2fr;
+            gap: 30px;
+            min-width: 750px;
+            z-index: 1030;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+
+        .mega-panel.active {
+            display: grid;
+            animation: megaSlideIn 0.3s ease;
+        }
+
+        @keyframes megaSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50%) translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(50%) translateY(0);
+            }
+        }
+
+        .mega-links-section h4 {
+            color: var(--green-800);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            border-bottom: 2px solid var(--green-200);
+            padding-bottom: 8px;
+        }
+
+        .mega-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mega-links a {
+            color: var(--gray-700);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .mega-links a:hover {
+            background: var(--green-50);
+            color: var(--green-800);
+            transform: translateX(-5px);
+        }
+
+        .mega-links a i {
+            color: var(--green-500);
+            width: 20px;
+        }
+
+        .mega-description {
+            background: linear-gradient(135deg, var(--green-50), var(--cream));
+            padding: 20px;
+            border-radius: var(--radius-lg);
+        }
+
+        .mega-description h5 {
+            color: var(--green-800);
+            margin-bottom: 10px;
+        }
+
+        .mega-description p {
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .mega-image-card {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .mega-image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .mega-image-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .mega-image-card .card-content {
+            padding: 15px;
+            background: white;
+        }
+
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--green-800);
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        /* Page System */
+        .page {
+            display: none;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px 60px;
+            animation: pageFadeIn 0.4s ease;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f7ed 30%, #faf9f5 70%, #e3f0e0 100%);
+            border-radius: var(--radius-2xl);
+            padding: 60px 50px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(74, 158, 74, 0.15);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(74, 158, 74, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--green-900);
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--green-700);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        /* Cards */
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--green-900);
+            margin: 50px 0 30px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to left, var(--green-200), transparent);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid var(--gray-100);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--green-200);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--green-100), var(--green-50));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--green-700);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: var(--green-900);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* Image Cards */
+        .image-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .image-card-body {
+            padding: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--green-600), var(--green-700));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--green-700), var(--green-800));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--green-600);
+            color: var(--green-700);
+        }
+
+        .btn-outline:hover {
+            background: var(--green-50);
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 20px;
+            color: white;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-height: 90vh;
+            max-width: 90vw;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Booking Form */
+        .booking-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--green-500);
+            box-shadow: 0 0 0 3px rgba(74, 158, 74, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a2f1a, #234d23);
+            color: white;
+            padding: 60px 40px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer h4 {
+            color: var(--green-300);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer a {
+            color: var(--gray-300);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: var(--gray-400);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .header-container {
+                padding: 0 20px;
+            }
+
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .mobile-nav {
+                display: none;
+                position: fixed;
+                top: 80px;
+                right: 0;
+                width: 100%;
+                background: white;
+                box-shadow: var(--shadow-2xl);
+                padding: 20px;
+                z-index: 999;
+             
