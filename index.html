@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>روستای چای‌باغ | طبیعت، تاریخ و اقامت</title>
-  <!-- Font Awesome 6 for icons -->
+  <title>روستای چای‌باغ | طبیعت، تاریخ و اقامتگاه</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -15,69 +14,58 @@
 
     body {
       font-family: 'Segoe UI', 'Roboto', Tahoma, sans-serif;
-      background-color: #f5f7f3;
-      color: #2e3b2c;
-      line-height: 1.6;
+      background-color: #f6f8f4;
+      color: #1e2e1c;
+      line-height: 1.7;
       overflow-x: hidden;
     }
 
-    /* رنگ‌های طبیعی */
     :root {
-      --green-dark: #2d4a2c;
-      --green-mid: #4a6b3a;
-      --green-light: #7b9f6a;
-      --cream: #f9f7f2;
+      --green-dark: #1f3b1a;
+      --green-mid: #3a5a2f;
+      --green-soft: #7b9f6a;
+      --cream: #faf9f5;
       --white: #ffffff;
-      --gray-light: #e9ede4;
-      --gray-mid: #cbd5c0;
-      --text-primary: #1e2e1c;
-      --shadow-sm: 0 4px 12px rgba(0,0,0,0.04);
-      --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
-      --border-radius: 16px;
-      --transition: all 0.25s ease;
+      --gray-light: #e7ece2;
+      --shadow: 0 8px 20px rgba(0,0,0,0.05);
+      --radius: 18px;
     }
 
-    /* افکت برگ چای کوچک */
     .tea-leaf {
       position: fixed;
-      top: -30px;
-      left: -20px;
-      width: 45px;
-      height: 45px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path fill="%234a6b3a" opacity="0.25" d="M20 3c-3 6-10 12-17 13 5 2 12 6 14 13 2-7 10-11 16-13-8-1-14-7-13-13z"/></svg>') no-repeat center/contain;
+      top: 10px;
+      left: 10px;
+      width: 50px;
+      height: 50px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path fill="%233a5a2f" opacity="0.2" d="M20 4c-2 5-8 10-14 11 4 2 10 5 12 11 2-6 9-10 14-11-7-1-12-6-12-11z"/></svg>') no-repeat;
       pointer-events: none;
-      z-index: 9998;
-      opacity: 0.2;
-      animation: floatLeaf 12s infinite ease-in-out;
+      z-index: 9999;
+      animation: leafFloat 14s infinite;
+    }
+    @keyframes leafFloat {
+      0%{transform: translate(0,0) rotate(0deg);}
+      50%{transform: translate(20px,30px) rotate(10deg);}
+      100%{transform: translate(0,0) rotate(0deg);}
     }
 
-    @keyframes floatLeaf {
-      0% { transform: translate(0,0) rotate(0deg); }
-      50% { transform: translate(15px, 25px) rotate(8deg); }
-      100% { transform: translate(0,0) rotate(0deg); }
-    }
-
-    /* استایل هدر ثابت */
+    /* هدر */
     .sticky-header {
       position: sticky;
       top: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
       z-index: 1000;
-      transition: var(--transition);
-      height: 70px;
+      height: 72px;
+      transition: all 0.3s;
       display: flex;
       align-items: center;
     }
-
     .sticky-header.scrolled {
-      background: rgba(255, 255, 255, 0.98);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-      height: 64px;
+      height: 60px;
+      background: rgba(255,255,255,0.98);
     }
-
     .header-container {
       max-width: 1300px;
       margin: 0 auto;
@@ -85,135 +73,77 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 0 32px;
+      padding: 0 28px;
     }
-
     .logo {
       font-weight: 700;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       color: var(--green-dark);
-      letter-spacing: -0.3px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
-    .logo i {
-      color: var(--green-mid);
-      font-size: 2rem;
-    }
-
-    .main-nav {
+    .desktop-nav {
       display: flex;
       align-items: center;
-      gap: 6px;
-      position: relative;
+      gap: 10px;
     }
-
     .nav-item {
-      list-style: none;
       position: relative;
     }
-
     .nav-link {
       background: transparent;
       border: none;
       font-size: 1rem;
       font-weight: 500;
-      color: var(--text-primary);
-      padding: 0.6rem 1.2rem;
+      padding: 0.6rem 1.1rem;
       border-radius: 40px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: var(--transition);
-      white-space: nowrap;
-      background: transparent;
+      color: #1e2e1c;
+      transition: 0.2s;
     }
-
-    .nav-link i {
-      font-size: 0.9rem;
-      color: var(--green-mid);
-    }
-
     .nav-link:hover {
-      background: #eef3e9;
-      color: #1e3b1a;
+      background: #ecf1e7;
     }
-
-    /* مگا منو */
     .mega-panel {
       position: absolute;
       top: 100%;
       right: 0;
       background: white;
       border-radius: 20px;
-      box-shadow: 0 20px 35px rgba(0,0,0,0.08);
-      padding: 24px 28px;
+      box-shadow: 0 24px 40px rgba(0,0,0,0.1);
+      padding: 28px;
       display: none;
-      grid-template-columns: 2fr 1.2fr 1.5fr;
-      gap: 28px;
-      min-width: 680px;
+      grid-template-columns: 2fr 1.5fr 1.8fr;
+      gap: 24px;
+      min-width: 700px;
       z-index: 1020;
-      border: 1px solid rgba(0,0,0,0.03);
       margin-top: 8px;
-      backdrop-filter: blur(4px);
     }
-
     .mega-panel.active {
       display: grid;
     }
-
-    .mega-links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
     .mega-links a {
+      display: block;
+      padding: 8px 12px;
       color: #2b3d24;
       text-decoration: none;
       font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 8px;
-      border-radius: 8px;
-      transition: var(--transition);
-    }
-
-    .mega-links a:hover {
-      background: #f0f5ea;
-      color: #1f3b1a;
-    }
-
-    .mega-desc {
-      border-right: 1px solid #e0e7da;
-      padding-right: 20px;
-    }
-
-    .mega-desc p {
-      font-size: 0.9rem;
-      color: #4a5c3f;
-      margin-top: 8px;
-    }
-
-    .mega-card {
-      background: #f7faf4;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
     }
     .mega-card img {
       width: 100%;
-      height: 100px;
+      height: 90px;
       object-fit: cover;
+      border-radius: 12px;
     }
-    .mega-card span {
-      padding: 8px 10px;
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
+
+    .mobile-menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
     }
 
     /* صفحات */
@@ -222,38 +152,31 @@
       max-width: 1300px;
       margin: 20px auto 40px;
       padding: 0 24px;
-      animation: fade 0.3s ease;
+      animation: fade 0.3s;
     }
     .page.active-page {
       display: block;
     }
-    @keyframes fade { from {opacity: 0.8;} to {opacity: 1;} }
+    @keyframes fade { from{opacity:0.8;} to{opacity:1;} }
 
-    .hero-section {
-      background: linear-gradient(97deg, #eaf1e3 0%, #fbfdf9 100%);
-      border-radius: 32px;
+    .hero {
+      background: linear-gradient(100deg, #e3ecdb, #fafdf8);
+      border-radius: 30px;
       padding: 32px 36px;
-      margin: 24px 0 30px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
+      margin: 24px 0;
     }
-
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 24px;
-      margin: 28px 0;
+      margin: 24px 0;
     }
-
     .info-card {
       background: white;
-      border-radius: var(--border-radius);
+      border-radius: var(--radius);
       padding: 24px;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
+      box-shadow: var(--shadow);
     }
-
     .btn {
       background: var(--green-mid);
       color: white;
@@ -262,182 +185,136 @@
       border-radius: 50px;
       font-weight: 600;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: 0.2s;
     }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--green-mid);
-      color: var(--green-dark);
-    }
-
-    /* gallery lightbox */
     .lightbox {
       position: fixed;
-      top:0; left:0; width:100%; height:100%;
-      background: rgba(0,0,0,0.9);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
+      top:0;left:0;width:100%;height:100%;
+      background: rgba(0,0,0,0.92);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:2000;
     }
     .lightbox img {
       max-height: 85vh;
       max-width: 90vw;
       border-radius: 12px;
     }
-
     footer {
-      background: #f0f2ec;
-      padding: 40px 32px 20px;
-      margin-top: 60px;
-      border-top: 1px solid #dce3d4;
+      background: #eef2ea;
+      padding: 36px 24px;
+      margin-top: 50px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
 
-    @media (max-width: 800px) {
-      .header-container { flex-wrap: wrap; }
+    @media (max-width: 850px) {
+      .desktop-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        right: 0;
+        background: white;
+        width: 100%;
+        box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        padding: 20px;
+      }
+      .desktop-nav.show {
+        display: flex;
+      }
+      .mobile-menu-icon {
+        display: block;
+      }
+      .mega-panel {
+        position: static;
+        grid-template-columns: 1fr;
+        min-width: auto;
+        box-shadow: none;
+        margin: 0;
+      }
     }
   </style>
 </head>
 <body>
 <div class="tea-leaf"></div>
-
-<!-- هدر ثابت -->
 <header class="sticky-header" id="header">
   <div class="header-container">
-    <div class="logo">
-      <i class="fas fa-leaf"></i> چای‌باغ
-    </div>
-    <nav class="main-nav">
-      <div class="nav-item">
-        <button class="nav-link" data-mega="mega-home"><i class="fas fa-home"></i> خانه</button>
-        <div class="mega-panel" id="mega-home">
-          <div class="mega-links">
-            <a href="#" class="page-link" data-page="home"><i class="fas fa-igloo"></i> صفحه اصلی</a>
-            <a href="#" class="page-link" data-page="about"><i class="fas fa-info-circle"></i> معرفی روستا</a>
-            <a href="#" class="page-link" data-page="history"><i class="fas fa-monument"></i> تاریخچه</a>
-          </div>
-          <div class="mega-desc"><strong>چای‌باغ</strong><p>روستای جنگلی مازندران</p></div>
-          <div class="mega-card"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='60' viewBox='0 0 100 60'%3E%3Crect width='100' height='60' fill='%234a6b3a'/%3E%3Ctext x='15' y='38' fill='white' font-size='12'%3E🌿طبیعت%3C/text%3E%3C/svg%3E" alt=""><span>چای‌باغ سبز</span></div>
-        </div>
-      </div>
-      <div class="nav-item">
-        <button class="nav-link" data-mega="mega-nature"><i class="fas fa-tree"></i> طبیعت و فرهنگ</button>
-        <div class="mega-panel" id="mega-nature">
-          <div class="mega-links">
-            <a href="#" class="page-link" data-page="geography"><i class="fas fa-mountain"></i> جغرافیا</a>
-            <a href="#" class="page-link" data-page="culture"><i class="fas fa-users"></i> فرهنگ</a>
-            <a href="#" class="page-link" data-page="agriculture"><i class="fas fa-seedling"></i> کشاورزی</a>
-          </div>
-          <div class="mega-desc"><strong>جنگل‌های هیرکانی</strong></div>
-          <div class="mega-card"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='60'%3E%3Crect fill='%237b9f6a' width='100' height='60'/%3E%3Ctext x='20' y='40' fill='white'%3E🍃%3C/text%3E%3C/svg%3E"></div>
-        </div>
-      </div>
-      <div class="nav-item">
-        <button class="nav-link" data-mega="mega-gallery"><i class="fas fa-image"></i> گالری</button>
-        <div class="mega-panel" id="mega-gallery">
-          <div class="mega-links"><a href="#" class="page-link" data-page="gallery"><i class="fas fa-images"></i> گالری تصاویر</a></div>
-        </div>
-      </div>
-      <div class="nav-item">
-        <button class="nav-link" data-mega="mega-news"><i class="fas fa-newspaper"></i> اخبار</button>
-        <div class="mega-panel" id="mega-news"><div class="mega-links"><a href="#" class="page-link" data-page="news"><i class="fas fa-bullhorn"></i> اخبار روستا</a></div></div>
-      </div>
-      <div class="nav-item">
-        <button class="nav-link" data-mega="mega-booking"><i class="fas fa-bed"></i> اقامت</button>
-        <div class="mega-panel" id="mega-booking">
-          <div class="mega-links"><a href="#" class="page-link" data-page="booking"><i class="fas fa-calendar-check"></i> رزرو اقامتگاه</a></div>
-        </div>
-      </div>
-      <div class="nav-item">
-        <button class="nav-link" data-mega="mega-contact"><i class="fas fa-phone"></i> تماس</button>
-        <div class="mega-panel" id="mega-contact"><div class="mega-links"><a href="#" class="page-link" data-page="contact"><i class="fas fa-envelope"></i> تماس با ما</a></div></div>
-      </div>
+    <div class="logo"><i class="fas fa-leaf"></i> چای‌باغ</div>
+    <i class="fas fa-bars mobile-menu-icon" id="menuToggle"></i>
+    <nav class="desktop-nav" id="mainNav">
+      <div class="nav-item"><button class="nav-link" data-mega="mega1"><i class="fas fa-home"></i> خانه</button><div class="mega-panel" id="mega1"><div class="mega-links"><a href="#" class="page-link" data-page="home">صفحه اصلی</a><a href="#" class="page-link" data-page="about">معرفی</a></div><div class="mega-card"><span>🏡 چای‌باغ</span></div></div></div>
+      <div class="nav-item"><button class="nav-link" data-mega="mega2"><i class="fas fa-tree"></i> طبیعت</button><div class="mega-panel" id="mega2"><div class="mega-links"><a href="#" class="page-link" data-page="nature">طبیعت</a><a href="#" class="page-link" data-page="geography">جغرافیا</a></div></div></div>
+      <div class="nav-item"><button class="nav-link" data-mega="mega3"><i class="fas fa-landmark"></i> تاریخ</button><div class="mega-panel" id="mega3"><a href="#" class="page-link" data-page="history">تاریخچه</a></div></div>
+      <div class="nav-item"><button class="nav-link" data-mega="mega4"><i class="fas fa-images"></i> گالری</button><div class="mega-panel" id="mega4"><a href="#" class="page-link" data-page="gallery">گالری</a></div></div>
+      <div class="nav-item"><button class="nav-link" data-mega="mega5"><i class="fas fa-bed"></i> اقامت</button><div class="mega-panel" id="mega5"><a href="#" class="page-link" data-page="booking">رزرو</a></div></div>
+      <div class="nav-item"><button class="nav-link" data-mega="mega6"><i class="fas fa-phone"></i> تماس</button><div class="mega-panel" id="mega6"><a href="#" class="page-link" data-page="contact">تماس</a></div></div>
     </nav>
   </div>
 </header>
 
-<!-- محتوای صفحات -->
 <main id="app">
-  <!-- صفحه اصلی -->
   <div class="page active-page" id="page-home">
-    <div class="hero-section">
-      <div><h1 style="font-size:2.3rem;">روستای چای‌باغ 🌱</h1><p>مرکز دهستان چای‌باغ، سوادکوه شمالی · ۸۷۰ نفر</p></div>
-    </div>
+    <div class="hero"><h1>🌿 روستای چای‌باغ</h1><p>مرکز دهستان چای‌باغ · سوادکوه شمالی · ۸۷۰ نفر</p></div>
     <div class="card-grid">
-      <div class="info-card"><i class="fas fa-map-marker-alt fa-2x" style="color:#4a6b3a;"></i><h3>موقعیت</h3><p>۱۵ کیلومتری قائمشهر، جنگل‌های هیرکانی</p></div>
-      <div class="info-card"><i class="fas fa-umbrella-beach"></i><h3>جاذبه‌ها</h3><p>پل شاپور، مراتع، کلبه‌های سوئیسی</p></div>
+      <div class="info-card"><h3>📍 موقعیت</h3><p>۱۵ کیلومتری قائمشهر</p></div>
+      <div class="info-card"><h3>🏛️ پل شاپور</h3><p>اثر ملی، طاق جناغی</p></div>
     </div>
-    <section><h2>🏞️ طبیعت و پل شاپور</h2><p>پل تاریخی با طاق جناغی و درختچه انجیر.</p></section>
-    <div style="margin:30px 0"><a href="#" class="page-link btn" data-page="booking">رزرو اقامتگاه</a></div>
+    <h2>🍃 محصولات محلی</h2><p>برنج ارگانیک، نان محلی، لبنیات</p>
   </div>
-
-  <!-- سایر صفحات مشابه -->
   <div class="page" id="page-about"><h2>معرفی روستا</h2><p>چای‌باغ روستایی جنگلی از توابع نارنجستان...</p></div>
-  <div class="page" id="page-history"><h2>تاریخچه</h2><p>پل شاپور مربوط به دوره صفویه/قاجار.</p></div>
+  <div class="page" id="page-history"><h2>تاریخچه پل شاپور</h2><p>احتمالاً صفویه یا قاجار، ۵۲ متر طول.</p></div>
   <div class="page" id="page-geography"><h2>جغرافیا</h2><p>جلگه‌ای در میان جنگل‌های هیرکانی.</p></div>
-  <div class="page" id="page-culture"><h2>فرهنگ</h2><p>محصولات محلی: برنج ارگانیک، نان محلی.</p></div>
-  <div class="page" id="page-agriculture"><h2>کشاورزی</h2><p>برنج و لبنیات ارگانیک.</p></div>
-  <div class="page" id="page-nature"><h2>طبیعت</h2><p>زمستان‌های پربرف، بهار سرسبز.</p></div>
-  
-  <!-- گالری -->
-  <div class="page" id="page-gallery">
-    <h2>گالری تصاویر</h2>
-    <div class="card-grid" id="galleryGrid"></div>
-    <div class="lightbox" id="lightbox"><img id="lightboxImg" src="" alt=""></div>
-  </div>
-
-  <div class="page" id="page-news"><h2>اخبار</h2><p>آخرین اخبار چای‌باغ.</p></div>
-
-  <!-- صفحه رزرو -->
+  <div class="page" id="page-culture"><h2>فرهنگ</h2><p>آداب و رسوم محلی.</p></div>
+  <div class="page" id="page-agriculture"><h2>کشاورزی</h2><p>برنج و محصولات ارگانیک.</p></div>
+  <div class="page" id="page-nature"><h2>طبیعت</h2><p>جنگل و مراتع، بهترین فصل بهار.</p></div>
+  <div class="page" id="page-gallery"><h2>گالری</h2><div class="card-grid" id="galleryGrid"></div><div class="lightbox" id="lightbox"><img id="lightboxImg"></div></div>
+  <div class="page" id="page-news"><h2>اخبار</h2><p>آخرین رویدادهای چای‌باغ.</p></div>
   <div class="page" id="page-booking">
     <h2>🏡 رزرو اقامتگاه</h2>
     <div class="card-grid" id="accommodations"></div>
-    <div id="bookingFormSection" style="display:none; margin-top:30px; background:#f8faf6; padding:24px; border-radius:20px;">
+    <div id="bookingForm" style="display:none; margin-top:24px; background:#f7faf4; padding:24px; border-radius:20px;">
       <h3>فرم رزرو</h3>
-      <input type="text" id="guestName" placeholder="نام و نام خانوادگی" style="width:100%; padding:12px; margin:8px 0;"><br>
-      <input type="date" id="checkIn"><input type="date" id="checkOut" style="margin:0 8px;">
-      <input type="number" id="guests" placeholder="تعداد نفرات" min="1" value="2"><br>
-      <button class="btn" id="submitBooking">ثبت رزرو</button>
+      <input type="text" id="guestName" placeholder="نام کامل" style="width:100%; padding:12px; margin:10px 0;"><br>
+      <input type="date" id="checkIn"> <input type="date" id="checkOut">
+      <input type="number" id="guests" placeholder="تعداد نفرات" value="2" min="1"><br>
+      <button class="btn" id="submitBooking">ثبت نهایی</button>
     </div>
   </div>
-
-  <div class="page" id="page-contact"><h2>تماس با ما</h2><p>اطلاعات تماس و نقشه.</p></div>
+  <div class="page" id="page-contact"><h2>تماس با ما</h2><p>📞 ۰۱۱-xxxx | چای‌باغ، سوادکوه شمالی</p></div>
 </main>
 
 <footer>
-  <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
-    <div><strong>چای‌باغ</strong><br>آدرس: مازندران، سوادکوه شمالی</div>
-    <div>📞 ۰۱۱-xxx | ✉️ info@chaybagh.ir</div>
-  </div>
-  <div style="text-align:center; margin-top:20px;">© 2025 چای‌باغ</div>
+  <div><strong>چای‌باغ</strong><br>مازندران، سوادکوه شمالی</div>
+  <div>تماس: ۰۱۱-۳۲۲۲</div>
+  <div>© 2025 کلیه حقوق محفوظ</div>
 </footer>
 
 <script>
   (function() {
-    // مدیریت صفحات
     const pages = document.querySelectorAll('.page');
     const pageLinks = document.querySelectorAll('.page-link');
     const megaPanels = document.querySelectorAll('.mega-panel');
-    const navButtons = document.querySelectorAll('.nav-link[data-mega]');
+    const navButtons = document.querySelectorAll('[data-mega]');
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
 
     function showPage(pageId) {
       pages.forEach(p => p.classList.remove('active-page'));
-      document.getElementById(`page-${pageId}`).classList.add('active-page');
+      const target = document.getElementById(`page-${pageId}`);
+      if (target) target.classList.add('active-page');
       closeAllMega();
+      if (window.innerWidth < 850) mainNav.classList.remove('show');
     }
 
     pageLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const page = link.dataset.page;
-        if (page) showPage(page);
+        showPage(link.dataset.page);
       });
     });
 
-    // مگا منو کلیک‌محور
     function closeAllMega() {
       megaPanels.forEach(p => p.classList.remove('active'));
     }
@@ -447,78 +324,73 @@
         e.stopPropagation();
         const megaId = btn.dataset.mega;
         const panel = document.getElementById(megaId);
+        if (!panel) return;
         const isActive = panel.classList.contains('active');
         closeAllMega();
-        if (!isActive) {
-          panel.classList.add('active');
-        }
+        if (!isActive) panel.classList.add('active');
       });
     });
 
-    document.addEventListener('click', function(event) {
-      if (!event.target.closest('.nav-item')) closeAllMega();
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-item')) closeAllMega();
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllMega(); });
 
-    // هدر اسکرول
     window.addEventListener('scroll', () => {
-      const header = document.getElementById('header');
-      header.classList.toggle('scrolled', window.scrollY > 30);
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
     });
 
-    // گالری و لایت باکس
+    menuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('show');
+    });
+
+    // گالری
     const galleryImages = [
-      { src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect fill="%234a6b3a" width="300" height="200"/%3E%3Ctext x="70" y="110" fill="white"%3Eپل شاپور%3C/text%3E%3C/svg%3E', alt:'پل شاپور'},
-      { src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect fill="%237b9f6a" width="300" height="200"/%3E%3Ctext x="80" y="110" fill="white"%3Eجنگل%3C/text%3E%3C/svg%3E', alt:'جنگل'},
-      { src: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect fill="%232d4a2c" width="300" height="200"/%3E%3Ctext x="70" y="110" fill="white"%3Eکلبه%3C/text%3E%3C/svg%3E', alt:'کلبه'}
+      { src:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect fill="%233a5a2f" width="300" height="200"/%3E%3Ctext x="80" y="110" fill="white"%3Eپل شاپور%3C/text%3E%3C/svg%3E', alt:'پل'},
+      { src:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200"%3E%3Crect fill="%237b9f6a" width="300" height="200"/%3E%3Ctext x="90" y="110" fill="white"%3Eجنگل%3C/text%3E%3C/svg%3E', alt:'جنگل'}
     ];
-    const galleryGrid = document.getElementById('galleryGrid');
-    if (galleryGrid) {
-      galleryGrid.innerHTML = galleryImages.map((img,i) => 
-        `<div class="info-card" style="cursor:pointer;"><img src="${img.src}" alt="${img.alt}" style="width:100%; border-radius:12px;" data-index="${i}"></div>`
-      ).join('');
-    }
+    const grid = document.getElementById('galleryGrid');
+    if (grid) grid.innerHTML = galleryImages.map((img,i) => `<div class="info-card"><img src="${img.src}" alt="${img.alt}" style="width:100%; border-radius:12px; cursor:pointer;" data-lightbox></div>`).join('');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     document.addEventListener('click', (e) => {
-      if (e.target.tagName === 'IMG' && e.target.closest('#galleryGrid')) {
+      if (e.target.dataset.lightbox !== undefined) {
         lightbox.style.display = 'flex';
         lightboxImg.src = e.target.src;
       }
     });
     lightbox?.addEventListener('click', () => lightbox.style.display = 'none');
 
-    // اقامتگاه‌ها و رزرو بدون دیتابیس
+    // اقامتگاه
     const stays = [
-      { name:'کلبه سوئیسی چای‌باغ', capacity:4, price:650000, img:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="120"%3E%3Crect fill="%234a6b3a" width="200" height="120"/%3E%3Ctext fill="white" x="30" y="65"%3Eکلبه%3C/text%3E%3C/svg%3E'},
-      { name:'اقامتگاه بوم‌گردی شاپور', capacity:6, price:850000, img:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="120"%3E%3Crect fill="%237b9f6a" width="200" height="120"/%3E%3Ctext fill="white" x="30" y="65"%3Eبوم‌گردی%3C/text%3E%3C/svg%3E'}
+      { name:'کلبه سوئیسی', capacity:4, price:650000, img:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="120"%3E%3Crect fill="%233a5a2f" width="200" height="120"/%3E%3Ctext fill="white" x="50" y="65"%3Eکلبه%3C/text%3E%3C/svg%3E'},
+      { name:'بوم‌گردی شاپور', capacity:6, price:850000, img:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="120"%3E%3Crect fill="%237b9f6a" width="200" height="120"/%3E%3Ctext fill="white" x="45" y="65"%3Eبوم‌گردی%3C/text%3E%3C/svg%3E'}
     ];
-    const accContainer = document.getElementById('accommodations');
-    if (accContainer) {
-      accContainer.innerHTML = stays.map((s,idx) => `
+    const accDiv = document.getElementById('accommodations');
+    if (accDiv) {
+      accDiv.innerHTML = stays.map((s,i) => `
         <div class="info-card">
-          <img src="${s.img}" style="width:100%; border-radius:12px;">
-          <h4>${s.name}</h4><p>👥 ظرفیت: ${s.capacity} نفر</p><p>💰 ${s.price.toLocaleString()} تومان/شب</p>
-          <button class="btn select-stay" data-index="${idx}">رزرو این اقامتگاه</button>
+          <img src="${s.img}" style="width:100%; border-radius:14px;">
+          <h4>${s.name}</h4><p>👥 ${s.capacity} نفر | ${s.price.toLocaleString()} تومان</p>
+          <button class="btn select-stay" data-index="${i}">رزرو</button>
         </div>`).join('');
     }
-    const formSection = document.getElementById('bookingFormSection');
+    const formDiv = document.getElementById('bookingForm');
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('select-stay')) {
-        formSection.style.display = 'block';
+        formDiv.style.display = 'block';
         window.selectedStay = stays[e.target.dataset.index];
       }
     });
     document.getElementById('submitBooking')?.addEventListener('click', () => {
       const name = document.getElementById('guestName').value;
       if (!name || !window.selectedStay) return alert('لطفاً اطلاعات را تکمیل کنید.');
-      alert(`✅ رزرو ${window.selectedStay.name} برای ${name} ثبت شد. (شبیه‌سازی)`);
-      formSection.style.display = 'none';
+      alert(`✅ ${window.selectedStay.name} برای ${name} رزرو شد.`);
+      formDiv.style.display = 'none';
     });
 
-    // پیش‌فرض صفحه اصلی
     showPage('home');
   })();
 </script>
 </body>
-          </html>
+</html>
